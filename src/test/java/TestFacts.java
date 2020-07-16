@@ -12,8 +12,7 @@ public class TestFacts {
         rp.checkStatusCode();
         AllFacts allFacts = rp.getAllFacts();
         String idMax = rp.getUserIdWithMaxFacts(allFacts);
-        Assert.assertEquals(rp.getUserNameWithMaxFacts(allFacts,idMax)[0], "Kasimir");
-        Assert.assertEquals(rp.getUserNameWithMaxFacts(allFacts,idMax)[1], "Shultz");
+        Assert.assertEquals(rp.getUserNameWithMaxFacts(allFacts,idMax), "Kasimir Shultz");
     }
 
 }

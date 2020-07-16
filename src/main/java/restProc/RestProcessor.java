@@ -23,26 +23,24 @@ public class RestProcessor {
         return get("https://cat-fact.herokuapp.com/facts").as(AllFacts.class);
     }
 
-    public String[] getUserNameWithMaxFacts (AllFacts allFacts, String id) {
+    public String getUserNameWithMaxFacts (AllFacts allFacts, String id) {
         User user;
         Name myName;
-        String firstName = null;
-        String lastName = null;
+        String resName = "";
         for (Fact fact : allFacts.getFacts()) {
             user = fact.getUser();
             if (user != null) {
                 myName = user.getNameById(id);
                 if (myName != null) {
-                    firstName = user.getName().getFirst();
-                    lastName = user.getName().getLast();
+                    resName = user.getName().getFirst() + " " +user.getName().getLast();
                 }
             }
         }
-        return new String[]{firstName, lastName};
+        return resName;
     }
 
     public String getUserIdWithMaxFacts(AllFacts allFacts) {
-        String result = "";
+        String result;
         result = allFacts.getFacts().stream()
                 .map(Fact::getUser)
                 .filter(Objects::nonNull)
@@ -50,8 +48,8 @@ public class RestProcessor {
                 .collect(Collectors.groupingBy(Function.identity(), Collectors.counting()))
                 .entrySet()
                 .stream()
-                .max(Comparator.comparing(Map.Entry::getValue))
-                .map(map->map.getKey())
+                .max(Map.Entry.comparingByValue())
+                .map(Map.Entry::getKey)
                 .get();
         return result;
     }
