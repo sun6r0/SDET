@@ -4,55 +4,60 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
 
 public class MailPage {
-    final WebDriver driver;
+    private WebDriver driver;
+    private WebDriverWait wait;
 
     @FindBy(className="bog")
-    public List<WebElement> listOfThemesElements;
+    public List<WebElement> listOfSubjectElements;
 
-    @FindBy(how =How.XPATH, using = "//div[@class='aic']/div/div")
-    public WebElement btn_Write;
+    @FindBy(xpath = "//div[@class='aic']/div/div")
+    public WebElement writeButton;
 
-    @FindBy(how =How.XPATH, using = "//textarea[@name = 'to']")
-    public WebElement txtbx_To;
+    @FindBy(xpath = "//textarea[@name = 'to']")
+    public WebElement toTextBox;
 
-    @FindBy(how =How.XPATH, using = "//input[@name = 'subjectbox']")
-    public WebElement txtbx_Subject;
+    @FindBy(xpath = "//input[@name = 'subjectbox']")
+    public WebElement subjectTextBox;
 
-    @FindBy(how =How.XPATH, using = "//div[@role = 'textbox']")
-    public WebElement txtbx_Text;
+    @FindBy(xpath = "//div[@role = 'textbox']")
+    public WebElement messageTextBox;
 
-    @FindBy(how =How.XPATH, using = "//div[@class = 'dC']/div[1]")
-    public WebElement btn_Send;
+    @FindBy(xpath = "//div[@class = 'dC']/div[1]")
+    public WebElement sendButton;
 
-    public MailPage(WebDriver driver)
-    {
+    public MailPage(WebDriver driver){
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, 20);
     }
 
-    public long Mail_Count(String subject) {
-        return listOfThemesElements
+    public WebDriver getDriver() {
+        return driver;
+    }
+
+    public long getMailCountBySubject(String subject) {
+        return listOfSubjectElements
                 .stream()
                 .filter(c -> c.getText().startsWith(subject))
                 .count();
     }
 
-    public void Mail_Action(String email, String subject) throws InterruptedException {
-        long mail_count = Mail_Count(subject);
-        btn_Write.click();
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.elementToBeClickable(txtbx_To));
-        txtbx_To.sendKeys(email);
-        txtbx_To.sendKeys(Keys.ENTER);
-        txtbx_Subject.sendKeys(subject);
-        txtbx_Text.sendKeys("Найдено " + mail_count + " писем(ма).");
-        btn_Send.click();
+    public void sendEmail(String email, String subject) throws InterruptedException {
+        long mailCount = getMailCountBySubject(subject);
+        writeButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(toTextBox));
+        toTextBox.sendKeys(email);
+        toTextBox.sendKeys(Keys.ENTER);
+        wait.until(ExpectedConditions.elementToBeClickable(subjectTextBox));
+        subjectTextBox.sendKeys(subject);
+        wait.until(ExpectedConditions.elementToBeClickable(messageTextBox));
+        messageTextBox.sendKeys("Найдено " + mailCount + " писем(ма).");
+        sendButton.click();
         Thread.sleep(5000);
     }
 }

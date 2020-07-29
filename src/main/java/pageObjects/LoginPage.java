@@ -3,37 +3,41 @@ package pageObjects;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
-    final WebDriver driver;
+    private WebDriver driver;
+    private WebDriverWait wait;
 
-    @FindBy(how = How.XPATH, using = "//input[@id='identifierId']")
-    public WebElement txtbx_UserName;
+    @FindBy(xpath = "//input[@id='identifierId']")
+    public WebElement identifierTextBox;
 
-    @FindBy(how = How.ID, using = "identifierNext")
-    public WebElement btn_UserName_Next;
+    @FindBy(id = "identifierNext")
+    public WebElement identifierNextButton;
 
-    @FindBy(how = How.XPATH, using = "//input[@name='password']")
-    public WebElement txtbx_Password;
+    @FindBy(xpath = "//input[@name='password']")
+    public WebElement passwordTextBox;
 
-    @FindBy(how = How.ID, using = "passwordNext")
-    public WebElement btn_Password_Next;
+    @FindBy(id = "passwordNext")
+    public WebElement passwordNextButton;
 
     public LoginPage(WebDriver driver){
         this.driver = driver;
+        this.wait = new WebDriverWait(driver, 20);
     }
 
-    public void LogIn_Action(String sUserName, String sPassword){
-        txtbx_UserName.sendKeys(sUserName);
-        btn_UserName_Next.click();
-        WebDriverWait wait = new WebDriverWait(driver, 20);
-        wait.until(ExpectedConditions.elementToBeClickable(txtbx_Password));
-        txtbx_Password.sendKeys(sPassword);
-        btn_Password_Next.click();
+    public WebDriver getDriver() {
+        return driver;
     }
 
+    public void login(String identifier, String password){
+        wait.until(ExpectedConditions.elementToBeClickable(identifierTextBox));
+        identifierTextBox.sendKeys(identifier);
+        identifierNextButton.click();
+        wait.until(ExpectedConditions.elementToBeClickable(passwordTextBox));
+        passwordTextBox.sendKeys(password);
+        passwordNextButton.click();
+    }
 }
 
