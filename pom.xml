@@ -19,6 +19,7 @@
                 <configuration>
                     <source>1.14</source>
                     <target>1.14</target>
+                    <executable>C:\Program Files\Java\jdk-14.0.2\bin\javac</executable>
                 </configuration>
             </plugin>
         </plugins>
