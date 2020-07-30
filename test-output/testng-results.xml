@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" total="1" passed="1">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default Suite" duration-ms="22695" started-at="2020-07-30T15:12:26Z" finished-at="2020-07-30T15:12:49Z">
+    <groups>
+    </groups>
+    <test name="APItest" duration-ms="22695" started-at="2020-07-30T15:12:26Z" finished-at="2020-07-30T15:12:49Z">
+      <class name="TestUI">
+        <test-method status="PASS" signature="getTokens()[pri:0, instance:TestUI@17b1517]" name="getTokens" is-config="true" duration-ms="28" started-at="2020-07-30T19:12:26Z" finished-at="2020-07-30T19:12:26Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getTokens -->
+        <test-method status="PASS" signature="beforeMethod()[pri:0, instance:TestUI@17b1517]" name="beforeMethod" is-config="true" duration-ms="7007" started-at="2020-07-30T19:12:26Z" finished-at="2020-07-30T19:12:33Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeMethod -->
+        <test-method status="PASS" signature="test()[pri:0, instance:TestUI@17b1517]" name="test" duration-ms="14865" started-at="2020-07-30T19:12:33Z" finished-at="2020-07-30T19:12:48Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- test -->
+        <test-method status="PASS" signature="afterMethod()[pri:0, instance:TestUI@17b1517]" name="afterMethod" is-config="true" duration-ms="780" started-at="2020-07-30T19:12:48Z" finished-at="2020-07-30T19:12:49Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterMethod -->
+      </class> <!-- TestUI -->
+    </test> <!-- APItest -->
+  </suite> <!-- Default Suite -->
+</testng-results>

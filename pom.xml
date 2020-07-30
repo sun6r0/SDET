@@ -19,7 +19,6 @@
             </plugin>
         </plugins>
     </build>
-
     <dependencies>
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
@@ -44,5 +43,4 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-
 </project>
