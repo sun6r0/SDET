@@ -12,20 +12,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     </properties>
-    <profiles>
-        <profile>
-            <id>testAPI</id>
-            <properties>
-                <suite.pattern>**/TestFacts.java</suite.pattern>
-            </properties>
-        </profile>
-        <profile>
-            <id>testUI</id>
-            <properties>
-                <suite.pattern>**/TestUI.java</suite.pattern>
-            </properties>
-        </profile>
-    </profiles>
     <build>
         <plugins>
             <plugin>
