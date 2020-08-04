@@ -27,11 +27,9 @@ public class TestUI {
 
     @BeforeClass
     public static void getTokens() throws IOException {
-        username = "tu928823@gmail.com";
-        password = "Test12345!";
-        //final Path tokenfile  = Paths.get(System.getProperty("user.home")).resolve("token.txt");
-        //username = Files.readAllLines(tokenfile).get(0).trim();
-        //password = Files.readAllLines(tokenfile).get(1).trim();
+        final Path tokenfile  = Paths.get(System.getProperty("user.home")).resolve("token.txt");
+        username = Files.readAllLines(tokenfile).get(0).trim();
+        password = Files.readAllLines(tokenfile).get(1).trim();
     }
 
     @BeforeMethod
