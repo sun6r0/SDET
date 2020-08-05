@@ -1,8 +1,6 @@
 package pageObjects;
 
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -31,6 +29,9 @@ public class MailPage {
     @FindBy(xpath = "//div[@class = 'dC']/div[1]")
     public WebElement sendButton;
 
+    @FindBy(className = "bBe")
+    public WebElement closePopUpButton;
+
     public MailPage(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 20);
@@ -58,6 +59,7 @@ public class MailPage {
         wait.until(ExpectedConditions.elementToBeClickable(messageTextBox));
         messageTextBox.sendKeys("Найдено " + mailCount + " писем(ма).");
         sendButton.click();
-        Thread.sleep(5000);
+        wait.until(ExpectedConditions.elementToBeClickable(closePopUpButton));
+        closePopUpButton.click();
     }
 }
