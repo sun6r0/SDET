@@ -29,7 +29,7 @@ public class MailPage {
     @FindBy(xpath = "//div[@class = 'dC']/div[1]")
     public WebElement sendButton;
 
-    @FindBy(className = "bBe")
+    @FindBy(css = ".bBe")
     public WebElement closePopUpButton;
 
     public MailPage(WebDriver driver){
