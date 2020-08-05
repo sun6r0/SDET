@@ -29,9 +29,6 @@ public class MailPage {
     @FindBy(xpath = "//div[@class = 'dC']/div[1]")
     public WebElement sendButton;
 
-    @FindBy(css = ".bBe")
-    public WebElement closePopUpButton;
-
     public MailPage(WebDriver driver){
         this.driver = driver;
         this.wait = new WebDriverWait(driver, 20);
@@ -59,7 +56,6 @@ public class MailPage {
         wait.until(ExpectedConditions.elementToBeClickable(messageTextBox));
         messageTextBox.sendKeys("Найдено " + mailCount + " писем(ма).");
         sendButton.click();
-        wait.until(ExpectedConditions.elementToBeClickable(closePopUpButton));
-        closePopUpButton.click();
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(text(), 'Найдено " + mailCount + " писем(ма).')]")));;
     }
 }
